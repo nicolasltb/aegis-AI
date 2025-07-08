@@ -122,10 +122,10 @@ cp .env.example .env
 
 2. Execute com Docker Compose:
 ```bash
-docker-compose up --build
+docker compose up --build
 ```
 
-### Acessos
+### Rotas
 
 - **Frontend**: http://localhost:3000
 - **API Local**: http://localhost:8000
@@ -167,24 +167,6 @@ docker-compose up --build
 - **IA**: Ollama (Llama3), Google Gemini API
 - **Containerização**: Docker, Docker Compose
 - **Comunicação**: HTTP/REST APIs com CORS
-
-## 📚 Referências
-
-1. **IBM Security**. *Cost of a Data Breach Report 2023*. Disponível em: [https://www.ibm.com/reports/data-breach](https://www.ibm.com/reports/data-breach). Acesso em: 07 jul. 2024.
-
-2. **Verizon**. *2023 Data Breach Investigations Report*. Disponível em: [https://www.verizon.com/business/resources/reports/dbir/](https://www.verizon.com/business/resources/reports/dbir/). Acesso em: 07 jul. 2024.
-
-3. **NIST**. *Guide to Computer Security Log Management (SP 800-92)*. National Institute of Standards and Technology, 2006. Disponível em: [https://csrc.nist.gov/publications/detail/sp/800-92/final](https://csrc.nist.gov/publications/detail/sp/800-92/final)
-
-4. **OWASP**. *Logging and Monitoring Failures - OWASP Top 10 2021*. Disponível em: [https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/](https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/)
-
-5. **SANS Institute**. *Log Management: Centralizing Your Logs*. SANS Reading Room, 2013. Disponível em: [https://www.sans.org/reading-room/whitepapers/logging/](https://www.sans.org/reading-room/whitepapers/logging/)
-
-6. **Ponemon Institute**. *The Cost of Malicious Insider Threats*. IBM Security, 2022. Disponível em: [https://www.ibm.com/security/data-breach/threat-intelligence/](https://www.ibm.com/security/data-breach/threat-intelligence/)
-
-7. **Gartner**. *Market Guide for Security Information and Event Management*. Gartner Research, 2023.
-
-8. **MITRE ATT&CK Framework**. *Defense Evasion - Indicator Removal on Host*. Disponível em: [https://attack.mitre.org/techniques/T1070/](https://attack.mitre.org/techniques/T1070/)
 
 ## 📦 Estrutura do Projeto
 
@@ -249,6 +231,24 @@ curl -X POST "http://localhost:8000/analisar_logs/" \
   }
 }
 ```
+
+## 📚 Referências
+
+1. **IBM Security**. *Cost of a Data Breach Report 2023*. Disponível em: [https://www.ibm.com/reports/data-breach](https://www.ibm.com/reports/data-breach). Acesso em: 07 jul. 2024.
+
+2. **Verizon**. *2023 Data Breach Investigations Report*. Disponível em: [https://www.verizon.com/business/resources/reports/dbir/](https://www.verizon.com/business/resources/reports/dbir/). Acesso em: 07 jul. 2024.
+
+3. **NIST**. *Guide to Computer Security Log Management (SP 800-92)*. National Institute of Standards and Technology, 2006. Disponível em: [https://csrc.nist.gov/publications/detail/sp/800-92/final](https://csrc.nist.gov/publications/detail/sp/800-92/final)
+
+4. **OWASP**. *Logging and Monitoring Failures - OWASP Top 10 2021*. Disponível em: [https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/](https://owasp.org/Top10/A09_2021-Security_Logging_and_Monitoring_Failures/)
+
+5. **SANS Institute**. *Log Management: Centralizing Your Logs*. SANS Reading Room, 2013. Disponível em: [https://www.sans.org/reading-room/whitepapers/logging/](https://www.sans.org/reading-room/whitepapers/logging/)
+
+6. **Ponemon Institute**. *The Cost of Malicious Insider Threats*. IBM Security, 2022. Disponível em: [https://www.ibm.com/security/data-breach/threat-intelligence/](https://www.ibm.com/security/data-breach/threat-intelligence/)
+
+7. **Gartner**. *Market Guide for Security Information and Event Management*. Gartner Research, 2023.
+
+8. **MITRE ATT&CK Framework**. *Defense Evasion - Indicator Removal on Host*. Disponível em: [https://attack.mitre.org/techniques/T1070/](https://attack.mitre.org/techniques/T1070/)
 
 ---
 
