@@ -29,7 +29,25 @@ async def processar_resumo(data: LogRequest):
     try:
         model = genai.GenerativeModel("gemini-2.5-flash")
         response = model.generate_content(
-            f"Com base no seguinte resumo técnico de segurança, gere recomendações de mitigação, boas práticas e, se aplicável, comandos de resposta ao incidente:\n{data.resumo}"
+            f"""Com base no seguinte resumo técnico de segurança, gere recomendações de mitigação, boas práticas e comandos de resposta ao incidente.
+
+**IMPORTANTE: Formate sua resposta usando Markdown com:**
+- Cabeçalhos (## para seções principais, ### para subseções)
+- Listas numeradas para passos sequenciais
+- Listas com bullets para itens relacionados
+- **Negrito** para destacar ações críticas
+- `comandos` para códigos e comandos específicos
+- > Citações para alertas importantes
+
+**Resumo técnico:**
+{data.resumo}
+
+**Estrutura sugerida:**
+## Avaliação de Risco
+## Recomendações Imediatas
+## Plano de Mitigação
+## Comandos de Resposta
+## Prevenção Futura"""
         )
 
         return {"recomendacoes": response.text}

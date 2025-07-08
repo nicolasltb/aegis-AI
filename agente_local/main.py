@@ -42,7 +42,23 @@ async def analisar_logs(request: LogRequest):
                 "messages": [
                     {
                         "role": "user",
-                        "content": f"Analise os seguintes logs e gere um resumo técnico em Portugês (PT-BR) da situação de segurança:\n{request.logs}",
+                        "content": f"""Analise os seguintes logs e gere um resumo técnico em Português (PT-BR) da situação de segurança.
+
+**IMPORTANTE: Formate sua resposta usando Markdown com:**
+- Cabeçalhos (## para seções principais, ### para subseções)
+- Listas numeradas ou com bullets para organizar informações
+- **Negrito** para destacar pontos importantes
+- `código` para destacar IPs, comandos ou identificadores técnicos
+- > Citações para destacar alertas ou informações críticas
+
+**Logs para análise:**
+{request.logs}
+
+**Estrutura sugerida:**
+## Resumo Executivo
+## Eventos Críticos Identificados
+## Análise de Segurança
+## Indicadores de Comprometimento""",
                     }
                 ],
                 "stream": False,
