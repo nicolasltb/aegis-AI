@@ -126,10 +126,10 @@ GET http://localhost:8000/analisar_logs
 
 ## 👥 Equipe
 
-Arthur Rafael
-Caio Bastos
-Nicolas Lopes
-Pedro Rabelo
+- Arthur Rafael
+- Caio Bastos
+- Nicolas Lopes
+- Pedro Rabelo
 
 Nome do Projeto: **Aegis-AI**
 
