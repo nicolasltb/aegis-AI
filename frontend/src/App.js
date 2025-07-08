@@ -110,7 +110,7 @@ function App() {
 
         {/* Footer */}
         <footer className="mt-12 text-center text-gray-400 text-sm">
-          <p>Aegis AI © 2024 - Sistema de Análise de Logs com Inteligência Artificial</p>
+          <p>Aegis AI © 2025 - Sistema de Análise de Logs com Inteligência Artificial</p>
         </footer>
       </div>
     </div>
