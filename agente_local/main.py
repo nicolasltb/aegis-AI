@@ -1,9 +1,18 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
 import httpx
 import os
 from pydantic import BaseModel
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:3000", "http://frontend:3000"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 class LogRequest(BaseModel):
     logs: str
@@ -12,6 +21,13 @@ OLLAMA_HOST = os.getenv("OLLAMA_HOST")
 AGENT2_API_URL = os.getenv("AGENT2_API_URL")
 
 print(OLLAMA_HOST)
+
+@app.get("/health")
+async def health_check():
+    """
+    Health check endpoint for frontend connection status.
+    """
+    return {"status": "healthy", "service": "agente_local"}
 
 @app.post("/analisar_logs/")
 async def analisar_logs(request: LogRequest):
@@ -26,12 +42,12 @@ async def analisar_logs(request: LogRequest):
                 "messages": [
                     {
                         "role": "user",
-                        "content": f"Analise os seguintes logs e gere um resumo técnico da situação de segurança:\n{request.logs}",
+                        "content": f"Analise os seguintes logs e gere um resumo técnico em Portugês (PT-BR) da situação de segurança:\n{request.logs}",
                     }
                 ],
                 "stream": False,
             }
-            response_ollama = await client.post(f"{OLLAMA_HOST}api/chat", json=payload, timeout=300.0)
+            response_ollama = await client.post(f"{OLLAMA_HOST}/api/chat", json=payload, timeout=500.0)
             print(response_ollama.json())
             response_ollama.raise_for_status()
             resumo_tecnico = response_ollama.json()["message"]["content"]
