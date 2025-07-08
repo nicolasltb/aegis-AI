@@ -31,15 +31,15 @@ async def analisar_logs(request: LogRequest):
                 ],
                 "stream": False,
             }
-            response_ollama = await client.post(f"{OLLAMA_HOST}/api/chat", json=payload, timeout=300.0)
-            print(response_ollama)
+            response_ollama = await client.post(f"{OLLAMA_HOST}api/chat", json=payload, timeout=300.0)
+            print(response_ollama.json())
             response_ollama.raise_for_status()
             resumo_tecnico = response_ollama.json()["message"]["content"]
 
         # Envio para o Agente Online
         async with httpx.AsyncClient() as client:
             response_gemini = await client.post(
-                AGENT2_API_URL, json={"resumo": resumo_tecnico}
+                AGENT2_API_URL, json={"resumo": resumo_tecnico}, timeout=500.0
             )
             response_gemini.raise_for_status()
             recomendacoes = response_gemini.json()

@@ -23,7 +23,7 @@ services:
       - aegis-net
 
   ollama:
-    build: ./ollama
+    image: ollama/ollama
     ports:
       - "11434:11434"
     volumes:
