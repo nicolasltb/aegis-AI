@@ -122,7 +122,12 @@ cp .env.example .env
 
 2. Execute com Docker Compose:
 ```bash
-docker compose up --build
+docker compose up --build -d
+```
+
+3. Defina o modelo a ser utilizado pelo ollama com o llama3
+```bash
+docker exec -it aegis-ai-ollama-1 ollama run llama3
 ```
 
 ### Rotas
