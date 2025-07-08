@@ -1,0 +1,39 @@
+version: '3.3'
+
+services:
+  agente_local:
+    build: ./agente_local
+    ports:
+      - "8000:8000"
+    environment:
+      - OLLAMA_HOST=${OLLAMA_HOST}
+      - AGENT2_API_URL=${AGENT2_API_URL}
+    networks:
+      - aegis-net
+    depends_on:
+      - ollama
+
+  agente_online:
+    build: ./agente_online
+    ports:
+      - "8001:8001"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+    networks:
+      - aegis-net
+
+  ollama:
+    build: ./ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    networks:
+      - aegis-net
+
+networks:
+  aegis-net:
+    driver: bridge
+
+volumes:
+  ollama_data:
