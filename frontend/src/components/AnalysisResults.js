@@ -1,5 +1,8 @@
 import React from 'react';
-import { Brain, Shield, Lightbulb, Clock, CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
+import {
+  Brain, Shield, Lightbulb, Clock, CheckCircle,
+  AlertTriangle, XCircle
+} from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
@@ -74,7 +77,7 @@ const AnalysisResults = ({ result, error, isAnalyzing }) => {
 
   return (
     <div className="space-y-6 animate-fade-in">
-      {/* Technical Summary */}
+      {/* Resumo Técnico */}
       <div className="glass-effect rounded-xl p-6 border border-white/20">
         <div className="flex items-center mb-4">
           <Brain className="w-6 h-6 text-primary-400 mr-3" />
@@ -84,19 +87,17 @@ const AnalysisResults = ({ result, error, isAnalyzing }) => {
             {new Date().toLocaleTimeString('pt-BR')}
           </div>
         </div>
-        
-        <div className="bg-gray-900/50 rounded-lg p-4">
+
+        <div className="bg-gray-900/50 rounded-lg p-4 max-h-[400px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-800">
           <div className="prose prose-invert max-w-none text-gray-100 markdown-content">
-            <ReactMarkdown 
-              remarkPlugins={[remarkGfm]}
-            >
+            <ReactMarkdown remarkPlugins={[remarkGfm]}>
               {result.resumo_tecnico || 'Nenhum resumo disponível'}
             </ReactMarkdown>
           </div>
         </div>
       </div>
 
-      {/* AI Recommendations */}
+      {/* Recomendações de Segurança */}
       {result.recomendacoes_gemini && (
         <div className="glass-effect rounded-xl p-6 border border-white/20">
           <div className="flex items-center mb-4">
@@ -106,12 +107,10 @@ const AnalysisResults = ({ result, error, isAnalyzing }) => {
               {getSeverityIcon(result.recomendacoes_gemini.recomendacoes || '')}
             </div>
           </div>
-          
-          <div className="bg-gray-900/50 rounded-lg p-4">
+
+          <div className="bg-gray-900/50 rounded-lg p-4 max-h-[400px] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-800">
             <div className={`prose prose-invert max-w-none markdown-content ${getSeverityColor(result.recomendacoes_gemini.recomendacoes || '')}`}>
-              <ReactMarkdown 
-                remarkPlugins={[remarkGfm]}
-              >
+              <ReactMarkdown remarkPlugins={[remarkGfm]}>
                 {result.recomendacoes_gemini.recomendacoes || 'Nenhuma recomendação disponível'}
               </ReactMarkdown>
             </div>
@@ -119,20 +118,20 @@ const AnalysisResults = ({ result, error, isAnalyzing }) => {
         </div>
       )}
 
-      {/* Analysis Metadata */}
+      {/* Metadados da Análise */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="glass-effect rounded-lg p-4 border border-white/20 text-center">
           <Shield className="w-8 h-8 text-primary-400 mx-auto mb-2" />
           <div className="text-sm text-gray-400">Status</div>
           <div className="text-white font-semibold">Análise Completa</div>
         </div>
-        
+
         <div className="glass-effect rounded-lg p-4 border border-white/20 text-center">
           <Brain className="w-8 h-8 text-success-400 mx-auto mb-2" />
           <div className="text-sm text-gray-400">IA Local</div>
           <div className="text-white font-semibold">Llama3</div>
         </div>
-        
+
         <div className="glass-effect rounded-lg p-4 border border-white/20 text-center">
           <Lightbulb className="w-8 h-8 text-warning-400 mx-auto mb-2" />
           <div className="text-sm text-gray-400">IA Online</div>
