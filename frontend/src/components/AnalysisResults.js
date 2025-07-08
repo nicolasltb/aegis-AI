@@ -1,5 +1,7 @@
 import React from 'react';
 import { Brain, Shield, Lightbulb, Clock, CheckCircle, AlertTriangle, XCircle } from 'lucide-react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter';
 import { oneDark } from 'react-syntax-highlighter/dist/esm/styles/prism';
 
@@ -84,19 +86,13 @@ const AnalysisResults = ({ result, error, isAnalyzing }) => {
         </div>
         
         <div className="bg-gray-900/50 rounded-lg p-4">
-          <SyntaxHighlighter
-            language="text"
-            style={oneDark}
-            customStyle={{
-              background: 'transparent',
-              padding: 0,
-              margin: 0,
-              fontSize: '14px',
-              lineHeight: '1.5',
-            }}
-          >
-            {result.resumo_tecnico || 'Nenhum resumo disponível'}
-          </SyntaxHighlighter>
+          <div className="prose prose-invert max-w-none text-gray-100 markdown-content">
+            <ReactMarkdown 
+              remarkPlugins={[remarkGfm]}
+            >
+              {result.resumo_tecnico || 'Nenhum resumo disponível'}
+            </ReactMarkdown>
+          </div>
         </div>
       </div>
 
@@ -112,20 +108,12 @@ const AnalysisResults = ({ result, error, isAnalyzing }) => {
           </div>
           
           <div className="bg-gray-900/50 rounded-lg p-4">
-            <div className={`prose prose-invert max-w-none ${getSeverityColor(result.recomendacoes_gemini.recomendacoes || '')}`}>
-              <SyntaxHighlighter
-                language="markdown"
-                style={oneDark}
-                customStyle={{
-                  background: 'transparent',
-                  padding: 0,
-                  margin: 0,
-                  fontSize: '14px',
-                  lineHeight: '1.6',
-                }}
+            <div className={`prose prose-invert max-w-none markdown-content ${getSeverityColor(result.recomendacoes_gemini.recomendacoes || '')}`}>
+              <ReactMarkdown 
+                remarkPlugins={[remarkGfm]}
               >
                 {result.recomendacoes_gemini.recomendacoes || 'Nenhuma recomendação disponível'}
-              </SyntaxHighlighter>
+              </ReactMarkdown>
             </div>
           </div>
         </div>
