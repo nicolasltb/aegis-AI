@@ -1,6 +1,17 @@
 version: '3.3'
 
 services:
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    environment:
+      - REACT_APP_API_URL=${REACT_APP_API_URL}
+    networks:
+      - aegis-net
+    depends_on:
+      - agente_local
+
   agente_local:
     build: ./agente_local
     ports:
